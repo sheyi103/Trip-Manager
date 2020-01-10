@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Driver-Log;
 
-class Create Driver-LogRequest extends FormRequest
+class CreateDriver-LogRequest extends FormRequest
 {
 
     /**

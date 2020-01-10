@@ -18,3 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+
+Route::resource('cars', 'CarController');
+
+Route::resource('driverLogs', 'Driver-LogController');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('users', 'UserController');

@@ -2,7 +2,7 @@
     <table class="table" id="roles-table">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Title</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>

@@ -13,7 +13,7 @@
     },
     {
         "name": "name",
-        "dbType": "string,255",
+        "dbType": "string,191",
         "htmlType": "text",
         "validations": "required",
         "searchable": true,
@@ -36,8 +36,20 @@
         "inView": true
     },
     {
+        "name": "car_id",
+        "dbType": "integer,false,true",
+        "htmlType": null,
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
         "name": "email",
-        "dbType": "string,255",
+        "dbType": "string,191",
         "htmlType": "text",
         "validations": "required",
         "searchable": true,
@@ -60,9 +72,33 @@
         "inView": true
     },
     {
-        "name": "password",
-        "dbType": "string,255",
+        "name": "profile_image_path",
+        "dbType": "string,191:nullable",
         "htmlType": "text",
+        "validations": null,
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "password",
+        "dbType": "string,191",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "status",
+        "dbType": "boolean",
+        "htmlType": "checkbox,1",
         "validations": "required",
         "searchable": true,
         "fillable": true,

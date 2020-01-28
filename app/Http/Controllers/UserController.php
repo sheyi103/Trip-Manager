@@ -8,7 +8,12 @@ use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 use Response;
+use App\Http\Resources\User as UserResource;
+use App\Models\Car;
+use App\Models\Role;
 
 class UserController extends AppBaseController
 {
@@ -31,6 +36,12 @@ class UserController extends AppBaseController
     {
         $users = $this->userRepository->all();
 
+
+        if($request->expectsJson()){
+
+             return new UserResource($users);
+        }
+       
         return view('users.index')
             ->with('users', $users);
     }
@@ -42,7 +53,11 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        $cars = Car::where('status', 0)->get();
+        return view('users.create')
+        ->with('roles',$roles)
+        ->with('cars',$cars);
     }
 
     /**
@@ -54,10 +69,28 @@ class UserController extends AppBaseController
      */
     public function store(CreateUserRequest $request)
     {
-        $input = $request->all();
+         $input = $request->all();
+        // $input = request()->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        //     'profile_image_path' => 'required|image'
+        // ]);
+        // $imagePath = request('profile_image_path')->store('uploads','public');
 
+        // $user = $this->userRepository->create([
+        //     'name' =>$input['name'],
+        //     'email' =>$input['email'],
+        //     'password' =>$input['password'],
+        //     'profile_image_path' =>$imagePath,
+        // ]);
         $user = $this->userRepository->create($input);
 
+        if($request->expectsJson()){
+
+            return new UserResource($user);
+       }
+       
         Flash::success('User saved successfully.');
 
         return redirect(route('users.index'));
@@ -100,7 +133,12 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('users.edit')->with('user', $user);
+        $roles = Role::all();
+        $cars = Car::all();
+        return view('users.edit')
+        ->with('roles',$roles)
+        ->with('cars',$cars)
+        ->with('user', $user);
     }
 
     /**
@@ -122,6 +160,11 @@ class UserController extends AppBaseController
         }
 
         $user = $this->userRepository->update($request->all(), $id);
+
+        if($request->expectsJson()){
+
+            return new UserResource($user);
+       }
 
         Flash::success('User updated successfully.');
 

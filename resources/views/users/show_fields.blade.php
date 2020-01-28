@@ -4,10 +4,12 @@
     <p>{{ $user->name }}</p>
 </div>
 
-<!-- Role Id Field -->
+
+
+<!-- Car Id Field -->
 <div class="form-group">
-    {!! Form::label('role_id', 'Role Id:') !!}
-    <p>{{ $user->role_id }}</p>
+    {!! Form::label('car_id', 'Car Plate Number:') !!}
+    <p>{{ $user->car['plate_number'] }}  </p>
 </div>
 
 <!-- Email Field -->
@@ -16,21 +18,33 @@
     <p>{{ $user->email }}</p>
 </div>
 
-<!-- Email Verified At Field -->
+
+
+<!-- Profile Image Path Field -->
 <div class="form-group">
-    {!! Form::label('email_verified_at', 'Email Verified At:') !!}
-    <p>{{ $user->email_verified_at }}</p>
+    {!! Form::label('profile_image_path', 'Profile Image Path:') !!}
+    <p>{{ $user->profile_image_path }}</p>
 </div>
 
-<!-- Password Field -->
+<!-- Status Field -->
 <div class="form-group">
-    {!! Form::label('password', 'Password:') !!}
-    <p>{{ $user->password }}</p>
+    {!! Form::label('status', 'Status:') !!}
+
+    <p>
+    
+    @if ( $user->status == 0)
+       inactive 
+    @else
+active
+    @endif
+</p>
 </div>
 
-<!-- Remember Token Field -->
-<div class="form-group">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    <p>{{ $user->remember_token }}</p>
-</div>
+
+<!-- Created At Field -->
+        <div class="form-group">
+            {!! Form::label('created_at', 'Created At:') !!}
+            <p>{{ $user->created_at->format('D d, M, Y H:i') }}</p>
+        </div>
+
 

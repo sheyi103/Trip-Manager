@@ -16,12 +16,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="user_id",
- *          description="user_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="make",
  *          description="make",
  *          type="string"
@@ -32,8 +26,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="car_path",
- *          description="car_path",
+ *          property="plate_number",
+ *          description="plate_number",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="car_image",
+ *          description="car_image",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -76,10 +76,10 @@ class Car extends Model
 
 
     public $fillable = [
-        'user_id',
         'make',
         'model',
-        'car_path',
+        'plate_number',
+        'car_image',
         'status'
     ];
 
@@ -90,10 +90,10 @@ class Car extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'user_id' => 'integer',
         'make' => 'string',
         'model' => 'string',
-        'car_path' => 'string',
+        'plate_number' => 'integer',
+        'car_image' => 'string',
         'status' => 'boolean'
     ];
 
@@ -103,9 +103,42 @@ class Car extends Model
      * @var array
      */
     public static $rules = [
-        'user_id' => 'required',
-        'model' => 'required'
+        'make' => 'required',
+        'model' => 'required',
+        'plate_number' => 'required',
+        'status' => 'required'
     ];
+/**
+      /**
+     * Get the car record associated with the user.
+     */
+    public function user()
+    {
+        return $this->hasOne('App\Models\User');
+    }
 
+    /**
+     * Get the Maintainers for the  Car.
+     */
+    public function maintainances()
+    {
+        return $this->hasMany('App\Models\Maintainance');
+    }
+
+     /**
+     * Get the Maintainers for the  Car.
+     */
+    public function fuelpurchases()
+    {
+        return $this->hasMany('App\Models\Fuel_Purchase');
+    }
+
+     /**
+     * Get the Maintainers for the  Car.
+     */
+    public function incidentreports()
+    {
+        return $this->hasMany('App\Models\Incident_Report');
+    }
     
 }

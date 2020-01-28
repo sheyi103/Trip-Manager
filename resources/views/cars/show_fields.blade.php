@@ -1,9 +1,3 @@
-<!-- User Id Field -->
-<div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{{ $car->user_id }}</p>
-</div>
-
 <!-- Make Field -->
 <div class="form-group">
     {!! Form::label('make', 'Make:') !!}
@@ -16,10 +10,17 @@
     <p>{{ $car->model }}</p>
 </div>
 
-<!-- Car Path Field -->
+<!-- Plate Number Field -->
 <div class="form-group">
-    {!! Form::label('car_path', 'Car Path:') !!}
-    <p>{{ $car->car_path }}</p>
+    {!! Form::label('plate_number', 'Plate Number:') !!}
+    <p>{{ $car->plate_number }}</p>
+</div>
+
+
+<!-- Car Image Field -->
+<div class="form-group">
+    {!! Form::label('car_image', 'Car Image:') !!}
+    <p>{{ $car->car_image }}</p>
 </div>
 
 <!-- Status Field -->
@@ -27,4 +28,10 @@
     {!! Form::label('status', 'Status:') !!}
     <p>{{ $car->status }}</p>
 </div>
+
+ <!-- Created At Field -->
+        <div class="form-group">
+            {!! Form::label('created_at', 'Created At:') !!}
+            <p>{{ $car->created_at->format('D d, M, Y H:i') }}</p>
+        </div>
 

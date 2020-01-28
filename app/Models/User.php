@@ -27,6 +27,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="car_id",
+ *          description="car_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="email",
  *          description="email",
  *          type="string"
@@ -38,9 +44,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="date-time"
  *      ),
  *      @SWG\Property(
+ *          property="profile_image_path",
+ *          description="profile_image_path",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="password",
  *          description="password",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="status",
+ *          description="status",
+ *          type="boolean"
  *      ),
  *      @SWG\Property(
  *          property="remember_token",
@@ -84,9 +100,12 @@ class User extends Model
     public $fillable = [
         'name',
         'role_id',
+        'car_id',
         'email',
         'email_verified_at',
+        'profile_image_path',
         'password',
+        'status',
         'remember_token'
     ];
 
@@ -99,9 +118,12 @@ class User extends Model
         'id' => 'integer',
         'name' => 'string',
         'role_id' => 'integer',
+        'car_id' => 'integer',
         'email' => 'string',
         'email_verified_at' => 'datetime',
+        'profile_image_path' => 'string',
         'password' => 'string',
+        'status' => 'boolean',
         'remember_token' => 'string'
     ];
 
@@ -113,9 +135,40 @@ class User extends Model
     public static $rules = [
         'name' => 'required',
         'role_id' => 'required',
+        'car_id' => 'required',
         'email' => 'required',
-        'password' => 'required'
+        'password' => 'required',
+        'status' => 'required'
     ];
+    /** 
+    * Get the user that owns the phone.
+    */
+   public function car()
+   {
+       return $this->belongsTo('App\Models\Car');
+   }
+    /**
+     * Get the role that owns this users.
+     */
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role');
+    }
 
-    
+
+    /**
+     * Get the trips for the  user.
+     */
+    public function trips()
+    {
+        return $this->hasMany('App\Models\Trip');
+    }
+
+    /**
+     * Get the maintainance for the  user.
+     */
+    public function maintainances()
+    {
+        return $this->hasMany('App\Models\Maintainance');
+    }
 }

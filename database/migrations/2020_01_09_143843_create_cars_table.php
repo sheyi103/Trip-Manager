@@ -15,11 +15,11 @@ class CreateCarsTable extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->Increments('id');
-            $table->integer('user_id');
-            $table->string('make')->nullable();
+            $table->string('make');
             $table->string('model');
-            $table->string('car_path')->nullable();  // Path to Where Car is saved on our server
-            $table->tinyInteger('status')->default(1)->nullable();
+            $table->string('plate_number');
+            $table->string('car_image')->nullable();  // Image Path to Where Car is saved on our server
+            $table->tinyInteger('status')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class CarRepository
  * @package App\Repositories
- * @version January 10, 2020, 12:53 am UTC
+ * @version January 22, 2020, 1:38 pm UTC
 */
 
 class CarRepository extends BaseRepository
@@ -17,10 +17,10 @@ class CarRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'user_id',
         'make',
         'model',
-        'car_path',
+        'plate_number',
+        'car_image',
         'status'
     ];
 

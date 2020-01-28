@@ -5,23 +5,32 @@
 
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
-            <div class="pull-left image">
-                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg" class="img-circle"
-                     alt="User Image"/>
+            <div class="pull-left image" style="padding-bottom: 45px;">
+                {{-- <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg" class="img-circle"
+                     alt="User Image"/> --}}
             </div>
             <div class="pull-left info">
                 @if (Auth::guest())
-                <p>InfyOm</p>
+                <p>Trip Manager</p>
                 @else
                     <p>{{ Auth::user()->name}}</p>
                 @endif
                 <!-- Status -->
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> 
+                
+                    @if(Auth::user()->role_id == 1)
+                    Admin
+                    @elseif(Auth::user()->role_id == 2)
+                    Supervicor
+                    @elseif(Auth::user()->role_id == 3)
+                    Driver
+                    @endif
+                </a>
             </div>
         </div>
 
         <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
+        {{-- <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search..."/>
           <span class="input-group-btn">
@@ -29,7 +38,7 @@
             </button>
           </span>
             </div>
-        </form>
+        </form> --}}
         <!-- Sidebar Menu -->
 
         <ul class="sidebar-menu" data-widget="tree">
